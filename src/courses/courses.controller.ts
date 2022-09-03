@@ -7,10 +7,11 @@ import { UpdateCourseDto } from './dto/update-course.dto';
 export class CoursesController {
   constructor(private readonly coursesService: CoursesService) {}
 
-  // @Post()
-  // createCourse(@Body() createCourseDto: CreateCourseDto) {
-  //   return this.coursesService.createCourse(createCourseDto);
-  // }
+  @Post()
+  async createCourse(@Body() createCourseDto: CreateCourseDto) {
+    const course = await this.coursesService.createCourse(createCourseDto);
+    return course;
+  }
 
   @Get()
   async getCourses() {
@@ -24,10 +25,10 @@ export class CoursesController {
     return course;
   }
 
-  // @Patch(':courseId')
-  // updateCourse(@Param('courseId') courseId: string, @Body() updateCourseDto: UpdateCourseDto) {
-  //   return this.coursesService.updateCourse(+courseId, updateCourseDto);
-  // }
+  @Patch(':courseId')
+  updateCourse(@Param('courseId') courseId: string, @Body() updateCourseDto: UpdateCourseDto) {
+    return this.coursesService.updateCourse(+courseId, updateCourseDto);
+  }
 
   @Delete(':courseId')
   async removeCourse(@Param('courseId') courseId: string) {

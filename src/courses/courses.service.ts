@@ -7,9 +7,12 @@ import { UpdateCourseDto } from './dto/update-course.dto';
 export class CoursesService {
   courses = COURSES;
 
-  // createCourse(createCourseDto: CreateCourseDto) {
-  //   return 'This action adds a new course';
-  // }
+  createCourse(course): Promise<any> {
+    return new Promise(resolve => {
+      this.courses.push(course);
+      resolve(this.courses)
+    })
+  }
 
   getCourses(): Promise<any> {
     return new Promise(resolve => {
@@ -28,9 +31,9 @@ export class CoursesService {
     })
   }
 
-  // updateCourse(courseId: number, updateCourseDto: UpdateCourseDto) {
-  //   return `This action updates a #${courseId} course`;
-  // }
+  updateCourse(courseId: number, updateCourseDto: UpdateCourseDto) {
+    return `This action updates a #${courseId} course`;
+  }
 
   removeCourse(courseId: number): Promise<any> {
     let id = Number(courseId);
