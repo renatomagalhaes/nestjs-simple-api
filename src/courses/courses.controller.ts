@@ -7,28 +7,31 @@ import { UpdateCourseDto } from './dto/update-course.dto';
 export class CoursesController {
   constructor(private readonly coursesService: CoursesService) {}
 
-  @Post()
-  create(@Body() createCourseDto: CreateCourseDto) {
-    return this.coursesService.create(createCourseDto);
-  }
+  // @Post()
+  // createCourse(@Body() createCourseDto: CreateCourseDto) {
+  //   return this.coursesService.createCourse(createCourseDto);
+  // }
 
   @Get()
-  findAll() {
-    return this.coursesService.findAll();
+  async getCourses() {
+    const courses = await this.coursesService.getCourses();
+    return courses;
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.coursesService.findOne(+id);
+  @Get(':courseId')
+  async getCourse(@Param('courseId') courseId: string) {
+    const course = await this.coursesService.getCourse(+courseId);
+    return course;
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCourseDto: UpdateCourseDto) {
-    return this.coursesService.update(+id, updateCourseDto);
-  }
+  // @Patch(':courseId')
+  // updateCourse(@Param('courseId') courseId: string, @Body() updateCourseDto: UpdateCourseDto) {
+  //   return this.coursesService.updateCourse(+courseId, updateCourseDto);
+  // }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.coursesService.remove(+id);
+  @Delete(':courseId')
+  async removeCourse(@Param('courseId') courseId: string) {
+    const courses = await this.coursesService.removeCourse(+courseId);
+    return courses;
   }
 }
